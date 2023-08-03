@@ -25,7 +25,7 @@ try:
         print("Failed to retrieve env-dev.properties from ConfigMap.")
         env_dev_properties = {
             "author": "default_author",
-            "some_key": "default_value",
+            "difficulty": "default_value",
         }
 
 except Exception as e:
@@ -33,15 +33,14 @@ except Exception as e:
     # If the 'kubernetes' package is not available, use default values
     env_dev_properties = {
         "author": "default_author",
-        "some_key": "default_value",
+        "difficulty": "default_value",
     }
 
+from fastapi import FastAPI
 
-def print_hi():
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hello {env_dev_properties["author"]}')  # Press ⌘F8 to toggle the breakpoint.
+app = FastAPI()
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi()
+@app.get("/")
+def read_root():
+    return f'Hello {env_dev_properties["author"]}'
