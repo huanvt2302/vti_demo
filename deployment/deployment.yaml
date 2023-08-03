@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hello-python
+  namespace: vti
 spec:
   replicas: 2
   selector:
@@ -14,6 +15,26 @@ spec:
     spec:
       containers:
       - name: hello-python
-        image: huanvt2302/vti_demo:0.1
+        image: huanvt2302/vti_demo:1.0
+        volumeMounts:
+          - name: hello-python-config
+            mountPath: /path/config
         ports:
         - containerPort: 5004
+      volumes:
+        - name: hello-python-config
+          configMap:
+            name: hello-python-config
+      restartPolicy: Always
+
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hello-python-config
+  namespace: vti
+data:
+  env-dev.properties: |
+    author=Huan
+    difficulty=medium
