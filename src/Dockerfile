@@ -16,4 +16,4 @@ RUN pip install -r requirements.txt
 
 # CMD instruction should be used to run the software
 # contained by your image, along with any arguments.
-CMD [ "python", "main.py"]
+CMD ["uvicorn", "main:app", "--proxy-headers", "--host", "0.0.0.0", "--port", "5001"]
