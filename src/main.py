@@ -43,4 +43,5 @@ app = FastAPI()
 
 @app.get("/")
 def read_root():
+    print("okie")
     return f'Hello {env_dev_properties["author"]}'
