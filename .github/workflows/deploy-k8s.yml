@@ -1,0 +1,25 @@
+name: Deploy Helloword
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - dev
+env:
+  ENV_NAME: dev
+  AWS_ROLE_ARN: ${{ secrets.DEV_AWS_ROLE_ARN }}
+  AWS_DEFAULT_REGION: ${{ secrets.DEV_AWS_REGION }}
+  AWS_REGION: ${{ secrets.DEV_AWS_REGION }}
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      # app build
+
+      # deploy
