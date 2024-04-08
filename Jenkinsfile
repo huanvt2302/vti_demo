@@ -17,7 +17,7 @@ pipeline {
         //            sh 'find . -name \\*.py | xargs pylint -f parseable | tee pylint.log'
         //                recordIssues(
         //                    tool: pyLint(pattern: 'pylint.log'),
-        //                    failTotalHigh: 10,
+        //                    failTotalHigh: 10,aaaaa
         //                )
         //            }
         //       }
